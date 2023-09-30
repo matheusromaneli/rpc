@@ -1,13 +1,20 @@
+
 import rpyc
 import sys
 
-if len(sys.argv) < 2:
-    exit("Usage {} SERVER".format(sys.argv[0]))
+def new_vector():
+    size = int(input("Insira o tamanho do vetor:"))
+    vector = []
+    for i in range(size):
+        vector.append(i)
+    return vector
 
 server = sys.argv[1]
 
 c = rpyc.connect(server,18861)
 
-print(c.root)
-print(c.root.get_answer())
-print(c.root.the_real_answer_though)
+client_vector = new_vector()
+print(c.root.sum(client_vector))
+
+
+
